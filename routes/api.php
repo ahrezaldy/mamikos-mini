@@ -13,6 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+Route::middleware('auth.basic:api')->post('rooms/book/{id}', 'RoomController@book');
+Route::middleware('auth.basic:api')->resource('rooms', 'RoomController')->except([
+    'create', 'edit'
+]);;
